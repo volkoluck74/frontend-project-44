@@ -2,4 +2,4 @@
 
 import brainGame from '../src/index.js';
 
-brainGame('brain-even');
+brainGame('brain-calc');

@@ -1,52 +1,40 @@
 import readlineSync from 'readline-sync';
+import brainEven from './game/brain-even.js';
+import brainCalc from './game/brain-calc.js';
+import brainGCD from './game/brain-gcd.js';
 
-export default function brainGame(nameOfgame) {
+export default function game(nameOfgame) {
   console.log('Welcome to the Brain Games');
-  const username = readlineSync.question('May I have your name?');
+  const username = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${username}!`);
-  let numbersCorrectAnswers = 0;
-  while (numbersCorrectAnswers < 3) {
-    let answer;
-    let randomNumber;
-    let firstOperand;
-    let secondOperand;
-    let operator;
-    switch (nameOfgame) {
-      case 'brain-even':
-        randomNumber = Math.ceil(Math.random() * 100);
-        if (randomNumber % 2 === 0) answer = 'yes';
-        else answer = 'no';
-        console.log(`Question: ${randomNumber}`);
-        break;
-      case 'brain-calc':
-        firstOperand = Math.ceil(Math.random() * 10);
-        secondOperand = Math.ceil(Math.random() * 10);
-        operator = Math.ceil(Math.random() * 10);
-        if (operator < 3) {
-          answer = (firstOperand - secondOperand).toString();
-          console.log(`${firstOperand} - ${secondOperand}`);
-        }
-        if (operator >= 3 && operator < 7) {
-          answer = (firstOperand + secondOperand).toString();
-          console.log(`${firstOperand} + ${secondOperand}`);
-        }
-        if (operator >= 7) {
-          answer = (firstOperand * secondOperand).toString();
-          console.log(`${firstOperand} * ${secondOperand}`);
-        }
-        break;
-      default:
-        answer = '';
-    }
-    const userAnswer = readlineSync.question('You answer: ');
-    if (answer === userAnswer) {
+  let functionOfGame;
+  switch (nameOfgame) {
+    case 'brain-even':
+      console.log('Answer "yes" if the number is even, otherwise answer "no".');
+      functionOfGame = brainEven;
+      break;
+    case 'brain-calc':
+      console.log('What is the result of the expression?');
+      functionOfGame = brainCalc;
+      break;
+    case 'brain-gcd':
+      console.log('Find the greatest common divisor of given numbers.');
+      functionOfGame = brainGCD;
+      break;
+    default:
+      console.log('Error');
+  }
+  let numberOfCorrectAnswers = 0;
+  while (numberOfCorrectAnswers < 3) {
+    const play = functionOfGame();
+    if (play.result === true) {
+      numberOfCorrectAnswers += 1;
       console.log('Correct!');
-      numbersCorrectAnswers += 1;
     } else {
-      console.log(`'${userAnswer}' is wrong answer ;(. Correct answer was '${answer}'`);
+      console.log(`'${play.userAnswer}' is wrong answer ;(. Correct answer was '${play.answer}'`);
       console.log(`Let's try again, ${username}`);
-      numbersCorrectAnswers = 0;
+      numberOfCorrectAnswers = 0;
     }
   }
-  console.log(`Congratulations, ${username}`);
+  console.log(`Congratulations, ${username}!`);
 }

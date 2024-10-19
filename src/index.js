@@ -3,6 +3,7 @@ import brainEven from './game/brain-even.js';
 import brainCalc from './game/brain-calc.js';
 import brainGCD from './game/brain-gcd.js';
 import brainProgression from './game/brain-progression.js';
+import brainPrime from './game/brain-prime.js';
 
 export default function game(nameOfgame) {
   console.log('Welcome to the Brain Games');
@@ -25,6 +26,10 @@ export default function game(nameOfgame) {
     case 'brain-progression':
       console.log('What number is missing in the progression?');
       functionOfGame = brainProgression;
+      break;
+    case 'brain-prime':
+      console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+      functionOfGame = brainPrime;
       break;
     default:
       console.log('Error');

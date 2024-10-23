@@ -1,12 +1,10 @@
 import readlineSync from 'readline-sync';
+import chooseGame from '../index.js';
 
-export default function brainCalc() {
-  let firstOperand = Math.ceil(Math.random() * 100);
-  let secondOperand = Math.ceil(Math.random() * 100);
-  while (firstOperand === 0 || secondOperand === 0) {
-    firstOperand = Math.ceil(Math.random() * 100);
-    secondOperand = Math.ceil(Math.random() * 100);
-  }
+function brainGSD() {
+  const firstOperand = Math.ceil(Math.random() * 100);
+  const secondOperand = Math.ceil(Math.random() * 100);
+
   console.log(`Question: ${firstOperand} ${secondOperand}`);
   let answer = Math.min(firstOperand, secondOperand);
   while (firstOperand % answer !== 0 || secondOperand % answer !== 0) {
@@ -23,4 +21,8 @@ export default function brainCalc() {
     userAnswer,
     answer,
   };
+}
+
+export default function game() {
+  chooseGame(brainGSD, 'Find the greatest common divisor of given numbers.');
 }

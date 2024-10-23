@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "type": "module",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/volkoluck74/frontend-project-44/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/volkoluck74/frontend-project-44/actions)",
+  "description": "The coolest game of ever",
   "bin": {
     "brain-games": "bin/brain-games.js",
     "brain-even": "bin/brain-even.js",
@@ -16,7 +16,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Volkoluck74",
   "license": "ISC",
   "dependencies": {
     "readline-sync": "^1.4.10"

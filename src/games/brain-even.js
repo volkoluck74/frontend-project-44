@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
+import chooseGame from '../index.js';
 
-export default function brainEven() {
+function brainEven() {
   const randomNumber = Math.ceil(Math.random() * 100);
   let answer = 'no';
   if (randomNumber % 2 === 0) answer = 'yes';
@@ -16,4 +17,8 @@ export default function brainEven() {
     userAnswer,
     answer,
   };
+}
+
+export default function game() {
+  chooseGame(brainEven, 'Answer "yes" if the number is even, otherwise answer "no".');
 }

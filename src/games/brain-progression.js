@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
+import chooseGame from '../index.js';
 
-export default function brainProgression() {
+function brainProgression() {
   let lengthOfProgression = Math.ceil(Math.random() * 10);
   if (lengthOfProgression < 5) {
     lengthOfProgression = 10 - lengthOfProgression;
@@ -32,4 +33,8 @@ export default function brainProgression() {
     userAnswer,
     answer,
   };
+}
+
+export default function game() {
+  chooseGame(brainProgression, 'What number is missing in the progression?');
 }

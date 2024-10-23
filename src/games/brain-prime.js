@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
+import chooseGame from '../index.js';
 
-export default function brainPrime() {
+function brainPrime() {
   const randomNumber = Math.ceil(Math.random() * 100);
   let answer = 'yes';
   for (let i = 2; i < Math.ceil(randomNumber / 2) + 1; i += 1) {
@@ -21,4 +22,8 @@ export default function brainPrime() {
     userAnswer,
     answer,
   };
+}
+
+export default function game() {
+  chooseGame(brainPrime, 'Answer "yes" if given number is prime. Otherwise answer "no".');
 }

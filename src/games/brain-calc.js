@@ -1,6 +1,7 @@
 import readlineSync from 'readline-sync';
+import chooseGame from '../index.js';
 
-export default function brainCalc() {
+function brainCalc() {
   const firstOperand = Math.ceil(Math.random() * 10);
   const secondOperand = Math.ceil(Math.random() * 10);
   const operator = Math.ceil(Math.random() * 10);
@@ -28,4 +29,8 @@ export default function brainCalc() {
     userAnswer,
     answer,
   };
+}
+
+export default function game() {
+  chooseGame(brainCalc, 'What is the result of the expression?');
 }

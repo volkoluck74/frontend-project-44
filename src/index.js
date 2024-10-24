@@ -13,7 +13,7 @@ export default function chooseGame(game, rule) {
       console.log('Correct!');
     } else {
       console.log(`'${play.userAnswer}' is wrong answer ;(. Correct answer was '${play.answer}'`);
-      console.log(`Let's try again, ${username}`);
+      console.log(`Let's try again, ${username}!`);
       break;
     }
   }

@@ -17,7 +17,7 @@ function brainProgression() {
     else progression.push('..');
   }
   const answer = firstElement + step * (numberOfHiddenElement - 1);
-  let question = 'Question ';
+  let question = '';
   for (let i = 0; i < progression.length; i += 1) {
     question += `${progression[i]} `;
   }

@@ -10,6 +10,7 @@ function brainPrime() {
       break;
     }
   }
+  if (randomNumber === 1) answer = 'no';
   console.log(`Question: ${randomNumber}`);
   const userAnswer = readlineSync.question('You answer: ');
   if (answer === userAnswer) {

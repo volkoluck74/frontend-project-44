@@ -14,8 +14,8 @@ export default function chooseGame(game, rule) {
     } else {
       console.log(`'${play.userAnswer}' is wrong answer ;(. Correct answer was '${play.answer}'`);
       console.log(`Let's try again, ${username}`);
-      numberOfCorrectAnswers = 0;
+      break;
     }
   }
-  console.log(`Congratulations, ${username}!`);
+  if (numberOfCorrectAnswers === 3) console.log(`Congratulations, ${username}!`);
 }

@@ -1,28 +1,13 @@
-import readlineSync from 'readline-sync';
-import chooseGame from '../index.js';
-
+import { createRandomNumberBefore100, getGCD } from '../utils/mathAndLogic.js';
+import moveGame from '../index.js';
+/* Генерируем два случайных числа. Возвращаем их НОД */
 function brainGSD() {
-  const firstOperand = Math.ceil(Math.random() * 100);
-  const secondOperand = Math.ceil(Math.random() * 100);
-
-  console.log(`Question: ${firstOperand} ${secondOperand}`);
-  let answer = Math.min(firstOperand, secondOperand);
-  while (firstOperand % answer !== 0 || secondOperand % answer !== 0) {
-    answer -= 1;
-  }
-  const userAnswer = readlineSync.question('You answer: ');
-  if (answer.toString() === userAnswer) {
-    return {
-      result: true,
-    };
-  }
-  return {
-    result: false,
-    userAnswer,
-    answer,
-  };
+  const firstNumber = createRandomNumberBefore100();
+  const secondNumber = createRandomNumberBefore100();
+  console.log(`Question: ${firstNumber} ${secondNumber}`);
+  return getGCD(firstNumber, secondNumber);
 }
 
-export default function game() {
-  chooseGame(brainGSD, 'Find the greatest common divisor of given numbers.');
+export default function brainGCDGame() {
+  moveGame(brainGSD, 'Find the greatest common divisor of given numbers.');
 }

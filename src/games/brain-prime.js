@@ -1,30 +1,12 @@
-import readlineSync from 'readline-sync';
-import chooseGame from '../index.js';
-
+import { createRandomNumberBefore100, isPrime } from '../utils/mathAndLogic.js';
+import moveGame from '../index.js';
+/* Генерируем случайное число. Возвращаем является ли число простым. */
 function brainPrime() {
-  const randomNumber = Math.ceil(Math.random() * 100);
-  let answer = 'yes';
-  for (let i = 2; i < Math.ceil(randomNumber / 2) + 1; i += 1) {
-    if (randomNumber % i === 0) {
-      answer = 'no';
-      break;
-    }
-  }
-  if (randomNumber === 1) answer = 'no';
+  const randomNumber = createRandomNumberBefore100();
   console.log(`Question: ${randomNumber}`);
-  const userAnswer = readlineSync.question('You answer: ');
-  if (answer === userAnswer) {
-    return {
-      result: true,
-    };
-  }
-  return {
-    result: false,
-    userAnswer,
-    answer,
-  };
+  return isPrime(randomNumber);
 }
 
-export default function game() {
-  chooseGame(brainPrime, 'Answer "yes" if given number is prime. Otherwise answer "no".');
+export default function brainPrimeGame() {
+  moveGame(brainPrime, 'Answer "yes" if given number is prime. Otherwise answer "no".');
 }

@@ -1,24 +1,12 @@
-import readlineSync from 'readline-sync';
-import chooseGame from '../index.js';
-
+import { createRandomNumberBefore100, isEven } from '../utils/mathAndLogic.js';
+import moveGame from '../index.js';
+/* Генерируем случайное число. Возвращаем является ли число четным. */
 function brainEven() {
-  const randomNumber = Math.ceil(Math.random() * 100);
-  let answer = 'no';
-  if (randomNumber % 2 === 0) answer = 'yes';
+  const randomNumber = createRandomNumberBefore100();
   console.log(`Question: ${randomNumber}`);
-  const userAnswer = readlineSync.question('You answer: ');
-  if (answer === userAnswer) {
-    return {
-      result: true,
-    };
-  }
-  return {
-    result: false,
-    userAnswer,
-    answer,
-  };
+  return isEven(randomNumber);
 }
 
-export default function game() {
-  chooseGame(brainEven, 'Answer "yes" if the number is even, otherwise answer "no".');
+export default function brainEvenGame() {
+  moveGame(brainEven, 'Answer "yes" if the number is even, otherwise answer "no".');
 }

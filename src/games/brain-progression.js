@@ -1,40 +1,33 @@
-import readlineSync from 'readline-sync';
-import chooseGame from '../index.js';
-
+import { createRandomNumberBefore10 } from '../utils/mathAndLogic.js';
+import moveGame from '../index.js';
+/*  Выводим арифмитическую последовательность с одним скрытым элементом.
+ Возвращаем скрытый элемент */
 function brainProgression() {
-  let lengthOfProgression = Math.ceil(Math.random() * 10);
-  if (lengthOfProgression < 5) {
-    lengthOfProgression = 10 - lengthOfProgression;
-  }
-  const step = Math.ceil(Math.random() * 10);
-  const firstElement = Math.ceil(Math.random() * 10);
-  let numberOfHiddenElement = Math.ceil(Math.random() * 10);
-  if (numberOfHiddenElement > lengthOfProgression) numberOfHiddenElement -= lengthOfProgression;
-
+  // Длина прогрессии от 5 до 10 чисел
+  let lengthProgression = createRandomNumberBefore10();
+  if (lengthProgression < 5) lengthProgression = 10 - lengthProgression;
+  // Шаг прогрессии
+  const step = createRandomNumberBefore10();
+  // Номер скрытого элемента
+  let numberOfHiddenElement = createRandomNumberBefore10();
+  // Первый элемент прогрессии
+  const firstElement = createRandomNumberBefore10();
+  if (numberOfHiddenElement > lengthProgression) numberOfHiddenElement -= lengthProgression;
   const progression = [];
-  for (let i = 0; i < lengthOfProgression; i += 1) {
+  for (let i = 0; i < lengthProgression; i += 1) {
     if (i !== numberOfHiddenElement - 1) progression.push(firstElement + step * i);
     else progression.push('..');
   }
+  // Значение скрытого элемента
   const answer = firstElement + step * (numberOfHiddenElement - 1);
   let question = '';
   for (let i = 0; i < progression.length; i += 1) {
     question += `${progression[i]} `;
   }
   console.log(`Question: ${question}`);
-  const userAnswer = readlineSync.question('You answer: ');
-  if (answer.toString() === userAnswer) {
-    return {
-      result: true,
-    };
-  }
-  return {
-    result: false,
-    userAnswer,
-    answer,
-  };
+  return answer.toString();
 }
 
-export default function game() {
-  chooseGame(brainProgression, 'What number is missing in the progression?');
+export default function brainProgressionGame() {
+  moveGame(brainProgression, 'What number is missing in the progression?');
 }

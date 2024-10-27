@@ -7,11 +7,11 @@ make install
 ```
 ## How to run?
 ```bash
-brain-even => In this game, we determine the eveness of the number.
-brain-calc => In this game we perform mathematical operations.
-brain-gcd => In this game we are finding for the largest divisor of two numbers
-brain-progression => In this game we are looking for the missing element of the progression.
-brain-prime => In this game, we determine whether a number is prime.
+brain-even // In this game, we determine the eveness of the number.
+brain-calc // In this game we perform mathematical operations.
+brain-gcd // In this game we are finding for the largest divisor of two numbers
+brain-progression // In this game we are looking for the missing element of the progression.
+brain-prime // In this game, we determine whether a number is prime.
 ```
 [brain-even](https://asciinema.org/a/ByNA8sATYo9SFA1tvp1fJPx)
 

@@ -1,8 +1,13 @@
-import { createRandomNumberBefore100, isEven } from '../utils/mathAndLogic.js';
+import createRandomNumber from '../utils/createRandomNumber.js';
 import moveGame from '../index.js';
+// Является ли число четным
+function isEven(number) {
+  if (number % 2 === 0) return 'yes';
+  return 'no';
+}
 /* Генерируем случайное число. Возвращаем является ли число четным. */
 function brainEven() {
-  const randomNumber = createRandomNumberBefore100();
+  const randomNumber = createRandomNumber(100);
   console.log(`Question: ${randomNumber}`);
   return isEven(randomNumber);
 }

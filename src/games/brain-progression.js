@@ -1,17 +1,17 @@
-import { createRandomNumberBefore10 } from '../utils/mathAndLogic.js';
+import createRandomNumber from '../utils/createRandomNumber.js';
 import moveGame from '../index.js';
 /*  Выводим арифмитическую последовательность с одним скрытым элементом.
  Возвращаем скрытый элемент */
 function brainProgression() {
   // Длина прогрессии от 5 до 10 чисел
-  let lengthProgression = createRandomNumberBefore10();
+  let lengthProgression = createRandomNumber(10);
   if (lengthProgression < 5) lengthProgression = 10 - lengthProgression;
   // Шаг прогрессии
-  const step = createRandomNumberBefore10();
+  const step = createRandomNumber(10);
   // Номер скрытого элемента
-  let numberOfHiddenElement = createRandomNumberBefore10();
+  let numberOfHiddenElement = createRandomNumber(10);
   // Первый элемент прогрессии
-  const firstElement = createRandomNumberBefore10();
+  const firstElement = createRandomNumber(10);
   if (numberOfHiddenElement > lengthProgression) numberOfHiddenElement -= lengthProgression;
   const progression = [];
   for (let i = 0; i < lengthProgression; i += 1) {

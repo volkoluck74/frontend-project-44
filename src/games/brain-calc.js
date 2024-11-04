@@ -1,51 +1,36 @@
-import createRandomNumber from '../utils/createRandomNumber.js';
-import moveGame from '../index.js';
-
-// Разность двух операндов
-function diff(firstOperand, secondOperand) {
+import getRandomNumber from '../utils/getRandomNumber.js';
+import startGame from '../index.js';
+/* Функция возвращает название опреции, в зависимости от переданного операнда (случайного числа).
+Для изменения вероятности "выпадания" пользователю определенной операции - изменить диапазон */
+function getOperation(randomNumber) {
+  if (randomNumber < 4) return 'sum';
+  if (randomNumber >= 8) return 'multyply';
+  return 'diff';
+}
+/* Функция на вход получает два операнда и название операцию. Результат вызова функции -
+вопрос выводимый в консоль */
+function getQuestion(firstOperand, secondOperand, operation) {
+  if (operation === 'sum') return console.log(`Question: ${firstOperand} + ${secondOperand}`);
+  if (operation === 'multyply') return console.log(`Question: ${firstOperand} * ${secondOperand}`);
+  return console.log(`Question: ${firstOperand} - ${secondOperand}`);
+}
+/* Функция на вход получает два операнда и название операцию. Результат вызова функции -
+результат соответствующей арифметической операции */
+function getResultOfOperation(firstOperand, secondOperand, operation) {
+  if (operation === 'sum') return firstOperand + secondOperand;
+  if (operation === 'multyply') return firstOperand * secondOperand;
   return firstOperand - secondOperand;
 }
-// Сложение двух операндов
-function sum(firstOperand, secondOperand) {
-  return firstOperand + secondOperand;
-}
-// Умножение двух операндов
-function multiply(firstOperand, secondOperand) {
-  return firstOperand * secondOperand;
-}
-
-// Случайный выбор операции
-function chooseOperation() {
-  const random = createRandomNumber(10);
-  if (random < 4) return sum;
-  if (random >= 4 && random < 8) return diff;
-  return multiply;
-}
-
-// Возврат результата случайное операции
-function resultOfOperation(firstOperand, secondOperand, operation) {
-  switch (operation) {
-    case sum:
-      console.log(`Question: ${firstOperand} + ${secondOperand}`);
-      break;
-    case diff:
-      console.log(`Question: ${firstOperand} - ${secondOperand}`);
-      break;
-    case multiply:
-      console.log(`Question: ${firstOperand} * ${secondOperand}`);
-      break;
-    default:
-      console.log('Undefined operation');
-  }
-  return operation(firstOperand, secondOperand);
-}
-/* Генерируем два операнда. Возвращаем результат случаной операции с этими операндами. */
+/* Генерируем два операнда и арифметическую операцию. Выводим пользователю в консоль вопрос
+и возвращаем результат соответствующей операции */
 function brainCalc() {
-  const firstOperand = createRandomNumber(10);
-  const secondOperand = createRandomNumber(10);
-  return resultOfOperation(firstOperand, secondOperand, chooseOperation()).toString();
+  const firstOperand = getRandomNumber(10);
+  const secondOperand = getRandomNumber(10);
+  const operation = getOperation(getRandomNumber(10));
+  getQuestion(firstOperand, secondOperand, operation);
+  return getResultOfOperation(firstOperand, secondOperand, operation).toString();
 }
 
 export default function brainCalcGame() {
-  moveGame(brainCalc, 'What is the result of the expression?');
+  startGame(brainCalc, 'What is the result of the expression?');
 }

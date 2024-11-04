@@ -1,20 +1,22 @@
-import createRandomNumber from '../utils/createRandomNumber.js';
-import moveGame from '../index.js';
+import getRandomNumber from '../utils/getRandomNumber.js';
+import startGame from '../index.js';
 /*  Выводим арифмитическую последовательность с одним скрытым элементом.
  Возвращаем скрытый элемент */
 function brainProgression() {
   // Длина прогрессии от 5 до 10 чисел
-  let lengthProgression = createRandomNumber(10);
-  if (lengthProgression < 5) lengthProgression = 10 - lengthProgression;
+  let lengthOfProgression = getRandomNumber(10);
+  if (lengthOfProgression < 5) lengthOfProgression = 10 - lengthOfProgression;
   // Шаг прогрессии
-  const step = createRandomNumber(10);
+  const step = getRandomNumber(10);
   // Номер скрытого элемента
-  let numberOfHiddenElement = createRandomNumber(10);
+  let numberOfHiddenElement = getRandomNumber(10);
   // Первый элемент прогрессии
-  const firstElement = createRandomNumber(10);
-  if (numberOfHiddenElement > lengthProgression) numberOfHiddenElement -= lengthProgression;
+  const firstElement = getRandomNumber(10);
+  // Если полученный номер скрытого элемента больше чем длина последовательности,
+  // изменяем его, вычитая длину последовательности
+  if (numberOfHiddenElement > lengthOfProgression) numberOfHiddenElement -= lengthOfProgression;
   const progression = [];
-  for (let i = 0; i < lengthProgression; i += 1) {
+  for (let i = 0; i < lengthOfProgression; i += 1) {
     if (i !== numberOfHiddenElement - 1) progression.push(firstElement + step * i);
     else progression.push('..');
   }
@@ -29,5 +31,5 @@ function brainProgression() {
 }
 
 export default function brainProgressionGame() {
-  moveGame(brainProgression, 'What number is missing in the progression?');
+  startGame(brainProgression, 'What number is missing in the progression?');
 }
